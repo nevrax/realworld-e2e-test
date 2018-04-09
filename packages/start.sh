@@ -1,6 +1,12 @@
 #!/bin/bash -x
 export SUT_FOLDER=`pwd`
 
+########################################
+# Start MongoDB via Docker
+########################################
+docker run --name mongo -p 27017:27017 mongo &
+sleep 5
+
 
 ########################################
 # Start app backend
