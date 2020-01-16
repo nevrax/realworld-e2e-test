@@ -13,7 +13,7 @@ var newUser = {
 };
 
 before(async () => {
-  const launchOptions = process.env.CI ? {} : { headless: false, slowMo: 5, };
+  const launchOptions = process.env.CI ? {} : { headless: false, slowMo: 2, };
 
   // Workaround till https://github.com/GoogleChrome/puppeteer/issues/290 is fixed
   if (process.env.LAUNCH_CHROME_NO_SANDBOX) {
@@ -75,7 +75,7 @@ it('Signup', async () => {
   await page.waitForSelector(profileLinkSelector);
   await page.screenshot({ path: '.screenshots/signup_03_done.png' });
   var profileLinkInnerText = await page.$eval(profileLinkSelector, el => el.innerText);
-  console.log(`profileLinkInnerText = [${profileLinkInnerText}]`);
+  //console.log(`profileLinkInnerText = [${profileLinkInnerText}]`);
   expect(profileLinkInnerText).to.equal(expectedUsername);
 
 });
