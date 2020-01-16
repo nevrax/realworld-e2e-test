@@ -2,6 +2,8 @@ const casual = require('casual');
 const puppeteer = require('puppeteer');
 const expect = require('chai').expect;
 
+const GUI_URI  = process.env.GUI_URI || 'http://localhost:4100';
+
 var browser = null;
 var page = null;
 var newUser = {
@@ -33,7 +35,7 @@ after(async () => {
 });
 
 it('Landing page loads', async () => {
-  await page.goto('http://localhost:4100');
+  await page.goto(GUI_URI);
   expect(await page.$('nav.navbar')).to.be.ok;
   expect(await page.$('div.home-page')).to.be.ok;
   await page.screenshot({ path: '.screenshots/landing_page.png' });
@@ -42,7 +44,7 @@ it('Landing page loads', async () => {
 it('Sign in with invalid credentials', async () => {
 
   // Sign in with invalid user
-  await page.goto('http://localhost:4100');
+  await page.goto(GUI_URI);
   await page.click('a[href*="login"]');
   await page.screenshot({ path: '.screenshots/signin_01_start.png' });
   await page.type('input[placeholder="Email"]', newUser.email);
@@ -58,7 +60,7 @@ it('Sign in with invalid credentials', async () => {
 it('Signup', async () => {
 
   // Register new user
-  await page.goto('http://localhost:4100');
+  await page.goto(GUI_URI);
   await page.click('a[href*="register"]');
   await page.screenshot({ path: '.screenshots/signup_01_start.png' });
   await page.type('input[placeholder="Username"]', newUser.username);
