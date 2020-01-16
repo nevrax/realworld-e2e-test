@@ -13,7 +13,7 @@ var newUser = {
 };
 
 before(async () => {
-  const launchOptions = process.env.CI ? {} : { headless: false, slowMo: 2, };
+  const launchOptions = process.env.CI ? {} : { headless: true, slowMo: 0, };
 
   // Workaround till https://github.com/GoogleChrome/puppeteer/issues/290 is fixed
   if (process.env.LAUNCH_CHROME_NO_SANDBOX) {
